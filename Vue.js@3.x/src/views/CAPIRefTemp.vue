@@ -3,7 +3,9 @@
 </template>
 
 <script>
-import { ref, watchEffect } from 'vue';
+import {
+  isReactive, reactive, ref, watchEffect,
+} from 'vue';
 
 export default {
   name: 'CAPIRefTemp',
@@ -14,15 +16,17 @@ export default {
     }, { flush: 'post' });
 
     const count = ref(0);
+    const state = reactive({
+      name: '',
+    });
     return {
       root,
       count,
+      state,
     };
   },
   mounted() {
-    console.log(this.$refs.root === this.root);
-    console.log(this.count);
-    console.log(this);
+    console.log(this.state);
   },
 };
 </script>
